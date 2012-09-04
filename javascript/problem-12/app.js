@@ -1,12 +1,14 @@
+var divisor = require('./calculate-divisors.js');
+
 //Factor code taken from: http://www.javascripter.net/math/primes/factorization.htm
 
-function factor(n) {
+function factorByTrialDivision(n) {
   if (isNaN(n) || !isFinite(n) || n%1!==0 || n===0) return n+'';
 
   var minFactor = leastFactor(n);
   if (n===minFactor) return n+'';
 
-  return minFactor + ',' + factor(n/minFactor);
+  return minFactor + ',' + factorByTrialDivision(n/minFactor);
 }
 
 // find the least factor in n by trial division
@@ -31,28 +33,34 @@ function leastFactor(n) {
  return n;
 }
 
-function getTriangleNum(n) {
-  var num = 0;
+var nextTriangleNumber = (function () {
+  var currentNumber = 0;
+  var currentSum = 0;
 
-  for (var i=1; i<=n; i++) {
-    num += i;
-  }
+  return function() {
+    currentSum += (++currentNumber);
+    return currentSum;
+  };
+})();
 
-  return num;
+
+// for (var i = 0; i < 8; i++) {
+//   console.log(nextTriangleNumber());
+// }
+
+var currentTriangleNum = nextTriangleNumber();
+//var numFactors = factorByTrialDivision(currentTriangleNum).split(',').length + 1;
+var numDvisiors = divisor(currentTriangleNum).length;
+
+//while (numFactors < 30) {
+while (numDvisiors < 500) {
+  currentTriangleNum = nextTriangleNumber();
+
+  //numFactors = factorByTrialDivision(currentTriangleNum).split(',').length + 2;
+  numDvisiors = divisor(currentTriangleNum).length;
+
+  //console.log(currentTriangleNum + ': ' + numFactors);
 }
 
-var number = 1;
-var currentTriangleNum = getTriangleNum(number);
-var numFactors = factor(currentTriangleNum).split(',').length + 1;
-
-while (numFactors < 25) {
-  number++;
-  currentTriangleNum = getTriangleNum(number);
-  
-  numFactors = factor(currentTriangleNum).split(',').length + 2;
-
-  // console.log(currentTriangleNum + ': ' + numFactors);
-}
-
-console.log(getTriangleNum(number));
+console.log(currentTriangleNum);
 
