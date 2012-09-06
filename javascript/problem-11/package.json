@@ -3,7 +3,7 @@
   "subdomain": "",
   "private": true,
   "author": "Jeremy Buis",
-  "name": "problem-17",
+  "name": "problem-11",
   "description": "",
   "version": "0.0.1-1",
   "main": "./lib/app.js",
