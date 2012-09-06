@@ -38,6 +38,7 @@ function numToString(num) {
 
       if (length === 1) {
         sentence += numbers[digits[0]];
+      //TENS
       } else if (length === 2) {
 
         if (currentNum === 1) {
@@ -51,6 +52,8 @@ function numToString(num) {
             sentence += 'twelve';
           } else if (nextNum === 3) {
             sentence += 'thir' + 'teen';
+          } else if (nextNum === 4) {
+            sentence += 'four' + 'teen';
           } else if (nextNum === 5) {
             sentence += 'fif' + 'teen';
           } else if (nextNum === 8) {
@@ -60,11 +63,13 @@ function numToString(num) {
           }
 
           break;
-
+        //
         } else if (currentNum === 2) {
           sentence += 'twen' + sig['10'];
         } else if (currentNum === 3) {
           sentence += 'thir' + sig['10'];
+        } else if (currentNum === 4) {
+          sentence += 'for' + sig['10'];
         } else if (currentNum === 5) {
           sentence += 'fif' + sig['10'];
         } else if (currentNum === 8) {
@@ -109,4 +114,8 @@ for (var i=1; i<=1000; i++) {
   //console.log(numToString(i));
 }
 
+//The answer
 console.log(sum);
+
+//exported for testing
+module.exports = numToString;

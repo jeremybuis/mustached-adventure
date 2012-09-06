@@ -1,0 +1,36 @@
+{
+  "domain": "",
+  "subdomain": "",
+  "private": true,
+  "author": "Jeremy Buis",
+  "name": "problem-17",
+  "description": "",
+  "version": "0.0.1-1",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jeremybuis/mustached-adventure.git"
+  },
+  "bin": {},
+  "directories": {
+    "lib": "./lib",
+    "test": "./test"
+  },
+  "engines": {
+    "node": "0.8.x"
+  },
+  "dependencies": {
+
+    },
+  "devDependencies": {
+    "should": "0.6.3",
+    "mocha": "1.3.0"
+  },
+   "scripts": {
+    "start": "node lib/app.js",
+    "test": "NODE_ENV=test node_modules/.bin/mocha --timeout 20000 -R spec test/*.js",
+    "inspect": "node-inspector &"
+  },
+  "bugs": {},
+  "licenses": []
+}
