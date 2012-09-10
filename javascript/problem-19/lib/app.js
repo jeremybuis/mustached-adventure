@@ -1,4 +1,3 @@
-
 var monthNames = [
   'january',
   'february',
