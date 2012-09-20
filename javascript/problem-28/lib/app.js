@@ -72,20 +72,32 @@ function generateSpiral(n) {
     value = spiralSquare(spiral, middle, middle, side, value, numItems);
   }
 
-  console.log(value);
+  // console.log(value);
 
   return spiral;
 }
 
-function app() {
+function app(n) {
 
-  var spiral = generateSpiral(1001);
+  var spiral = generateSpiral(n);
 
-  
+  var start = 0;
+  var end = spiral.length-1;
 
-  return 0;
+  var sum = 0;
+
+  for (var i=0; i<spiral.length; i++) {
+    sum += spiral[i][start] + spiral[i][end];
+    start++;
+    end--;
+  }
+
+  //one gets added twice
+  sum -= 1;
+
+  return sum;
 }
 
 module.exports = app;
 
-console.log(app());
+console.log(app(1001));
