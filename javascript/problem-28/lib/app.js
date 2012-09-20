@@ -1,41 +1,4 @@
-//http://ideone.com/9iL1F
-
-function spiralSquare(A, x, y, side, value) {
-  var mx = x + side-1;
-  var my = y + side-1;
-
-  var i;
-
-  console.log('x: ' + x + ' y: ' + y + ' side: ' + side + ' value: ' + value);
-
-  for (i=1; i<side; ++i) {
-    A[my-i][x] = value;
-
-    value++;
-  }
-
-  for (i=1; i<side; ++i) {
-    A[y][x+i] = value;
-
-    value++;
-  }
-
-  for (i=1; i<side; ++i) {
-    A[y+i][mx] = value;
-
-    value++;
-  }
-
-  for (i=1; i<side; ++i) {
-    A[my][mx-i] = value;
-
-    value++;
-  }
-
-  return value;
-}
-
-/*
+/* http://ideone.com/9iL1F
 
 void spiral_square(Array& a, int x, int y, int side, int& value)
 {
@@ -52,6 +15,39 @@ for (int side=4;--middle>=0;side += 2) {
 
 */
 
+function spiralSquare(A, x, y, side, value, numItems) {
+  var mx = x + side-1;
+  var my = y + side-1;
+
+  var i;
+
+  for (i=1; i<side && value<=numItems; ++i) {
+    A[my-i][x] = value;
+
+    value++;
+  }
+
+  for (i=1; i<side && value<=numItems; ++i) {
+    A[y][x+i] = value;
+
+    value++;
+  }
+
+  for (i=1; i<side && value<=numItems; ++i) {
+    A[y+i][mx] = value;
+
+    value++;
+  }
+
+  for (i=1; i<side && value<=numItems; ++i) {
+    A[my][mx-i] = value;
+
+    value++;
+  }
+
+  return value;
+}
+
 //nxn spiral
 function generateSpiral(n) {
   var spiral = new Array(n);
@@ -63,9 +59,9 @@ function generateSpiral(n) {
     }
   }
 
-  //var numItems = n * n;
+  var numItems = n * n;
   var value = 1;
-  var middle = 2;
+  var middle = Math.floor(n/2);
 
   spiral[middle][middle] = value++;
   spiral[middle][middle+1] = value++;
@@ -73,19 +69,19 @@ function generateSpiral(n) {
   spiral[middle+1][middle] = value++;
 
   for (var side=4; --middle>=0; side += 2) {
-    value = spiralSquare(spiral, middle, middle, side, value);
-
-    console.log(spiral);
+    value = spiralSquare(spiral, middle, middle, side, value, numItems);
   }
+
+  console.log(value);
 
   return spiral;
 }
 
 function app() {
 
-  var spiral = generateSpiral(5);
+  var spiral = generateSpiral(1001);
 
-  console.log(spiral);
+  
 
   return 0;
 }
